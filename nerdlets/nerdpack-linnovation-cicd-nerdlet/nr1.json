@@ -1,0 +1,6 @@
+{
+  "schemaType": "NERDLET",
+  "id": "nerdpack-innovation-cicd-nerdlet",
+  "description": "Jira Integration for CICD Optimization",
+  "displayName": "Innovation - CICD"
+}

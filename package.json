@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "name": "nr1-nerdpack-innovation-cicd",
+  "description": "Nerdpack innovation-cicd",
+  "version": "1.4.7",
+  "scripts": {
+    "start": "nr1 nerdpack:serve",
+    "test": "exit 0",
+    "eslint-check": "eslint nerdlets/",
+    "eslint-fix": "eslint nerdlets/ --fix"
+  },
+  "bugs": {
+    "email": "braj@newrelic.com"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "semantic-ui-react": "^0.88.2"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not ie < 11",
+    "not dead"
+  ],
+  "devDependencies": {
+    "@newrelic/eslint-plugin-newrelic": "^0.3.0",
+    "@semantic-release/changelog": "^3.0.5",
+    "@semantic-release/git": "^7.0.18",
+    "eslint": "^6.6.0",
+    "prettier": "^1.19.1"
+  }
+}
