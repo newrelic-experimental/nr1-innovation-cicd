@@ -28,7 +28,6 @@ nr1 nerdpack:serve
 Visit [https://one.newrelic.com/?nerdpacks=local](https://one.newrelic.com/?nerdpacks=local), navigate to the Nerdpack, and :sparkles:
 
 ## Deploying this Nerdpack
-
 Open a command prompt in the nerdpack's directory and run the following commands.
 
 ```bash
