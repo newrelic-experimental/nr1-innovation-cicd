@@ -1,0 +1,21 @@
+{
+  "name": "git-insights",
+  "version": "0.0.0",
+  "dependencies": {
+    "@newrelic/native-metrics": "^2.1.1",
+    "body-parser": "1.17.2",
+    "cf-deployment-tracker-client": "*",
+    "express": "^4.14.1",
+    "flat": "^4.1.0",
+    "newrelic": "1.39.1",
+    "request": "^2.88.0"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/orky/b2i.git"
+  }
+}
