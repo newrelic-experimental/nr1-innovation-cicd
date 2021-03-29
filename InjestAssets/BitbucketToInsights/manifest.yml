@@ -1,5 +1,0 @@
----
-applications:
-- name:    git-insights
-  host:    git-insights
-  memory:  128M
