@@ -2,10 +2,10 @@
 
 The JIRA to Insights Integration is a Node.JS service hosted on Heroku. The service endpoint expects a POST message from JIRA's Webhook, parses the data and sends it to Insights.
 
-More information on JIRA's Webhook settings can be found here: https://developer.atlassian.com/jiradev/jira-apis/webhooks
+More information on JIRA's Webhook settings can be found [here](https://developer.atlassian.com/jiradev/jira-apis/webhooks)
 
 ## Installation
-The J2I installation steps depend on the platform to which the integrationis being deployed. 
+The J2I installation steps depend on the platform to which the integration is being deployed. 
 
 Clone this repository or download and unzip the provided distribution and install into a target platform. Installation should expose and endpoint such as  https://your.server.com:PORT/insights/[RPMID]/key/[INSIGHTSINSERTKEY]
 
@@ -17,10 +17,6 @@ Clone this repository or download and unzip the provided distribution and instal
    The URL for the Webhook should be of the following form.
 
    https://your.server.com:PORT/insights/[RPMID]/key/[INSIGHTSINSERTKEY]
-3. Additional information can be found in [NewRelic-JiraIntegration](New Relic-Jira Integration.pdf)
 
-<object data="./New Relic-Jira Integration.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="/New Relic-Jira Integration.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="/New Relic-Jira Integration.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+   [here](http://google.com)
+3. Additional information can be found [here](NewRelic-JiraIntegration.pdf)
