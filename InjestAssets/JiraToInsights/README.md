@@ -17,7 +17,7 @@ Clone this repository or download and unzip the provided distribution and instal
    The URL for the Webhook should be of the following form.
 
    https://your.server.com:PORT/insights/[RPMID]/key/[INSIGHTSINSERTKEY]
-3. Additional information can be found in [New Relic-Jira Integration](/New Relic-Jira Integration.pdf)
+3. Additional information can be found in [NewRelic-JiraIntegration](New Relic-Jira Integration.pdf)
 
 <object data="./New Relic-Jira Integration.pdf" type="application/pdf" width="700px" height="700px">
     <embed src="/New Relic-Jira Integration.pdf">
