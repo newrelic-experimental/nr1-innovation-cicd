@@ -21,7 +21,7 @@ Clone this repository or download and unzip the provided distribution and instal
    [here](http://google.com)
 3. Additional information can be found [here](NewRelic-JiraIntegration.pdf)
 
-####Sample Jira Config
+### Sample Jira Config
 
 ![Jira config](./Jira.png?raw=true "Jira Config")
 
