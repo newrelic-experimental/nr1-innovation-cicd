@@ -18,3 +18,7 @@ Clone this repository or download and unzip the provided distribution and instal
    The URL for the Webhook should be of the following form.
 
    https://your.server.com:PORT/insights/[RPMID]/key/[INSIGHTSINSERTKEY]
+
+
+### Sample BitBucket Config
+   ![BitBucket config](./bitbucket.png?raw=true "BitBucket Config")
