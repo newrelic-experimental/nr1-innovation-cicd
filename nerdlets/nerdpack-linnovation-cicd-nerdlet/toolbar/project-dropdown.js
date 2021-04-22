@@ -18,6 +18,7 @@ export default class ProjectDropdown extends React.Component {
         <Dropdown
           className="toolbar__item-element"
           title={selectedProject ? selectedProject : 'All'}
+          style={{ minWidth: '10rem' }}
         >
           <DropdownItem
             onClick={() => filterChange('All')}
