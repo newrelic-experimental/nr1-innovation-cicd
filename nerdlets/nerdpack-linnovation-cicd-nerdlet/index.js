@@ -11,9 +11,11 @@ import {
   PlatformStateContext,
   nerdlet,
   UserStorageQuery,
-  Radio,
+  Checkbox,
+  Layout,
+  LayoutItem,
 } from 'nr1';
-import ProjectDropdown from './project-dropdown';
+import ProjectDropdown from './toolbar/project-dropdown';
 import SprintList from './sprint-list';
 import Dashboard from './dashboard';
 import Mapping from './mapping';
@@ -75,7 +77,7 @@ export default class InnovationCICD extends React.Component {
   async requiredEventTypesMissing() {
     // check if JIRAEvent and BitbucketEvent exist in the selected account
     let eventTypesList = await NerdGraphQuery.query({
-      query: gqlQuery.runQuery(this.state.accountId, 'show eventTypes'),
+      query: gqlQuery.runQuery(this.state.accountId, 'show eventTypes since 10 weeks ago'),
     });
     eventTypesList =
       (
@@ -140,7 +142,7 @@ export default class InnovationCICD extends React.Component {
           accountId: this.state.accountId,
           query: kanbanNRQL,
         });
-        results.data.chart.forEach(function(result) {
+        results.data.chart.forEach(function (result) {
           projectList.push({
             name: result.metadata.name,
             sprints: result.data[0].sprintName,
@@ -151,7 +153,7 @@ export default class InnovationCICD extends React.Component {
           accountId: this.state.accountId,
           query: projectNRQL,
         });
-        results.data.chart.forEach(function(result) {
+        results.data.chart.forEach(function (result) {
           projectList.push({
             name: result.metadata.name,
             sprints: result.data[0].sprintName,
@@ -159,7 +161,7 @@ export default class InnovationCICD extends React.Component {
         });
       }
 
-      projectList.sort(function(a, b) {
+      projectList.sort(function (a, b) {
         var nameA = a.name.toLowerCase(),
           nameB = b.name.toLowerCase();
         if (nameA < nameB)
@@ -189,7 +191,7 @@ export default class InnovationCICD extends React.Component {
           .nrql || {}
       ).results || {};
 
-    sprintListResults.forEach(function(result) {
+    sprintListResults.forEach(function (result) {
       sprintList.push({ name: result.sprintName });
     });
 
@@ -213,7 +215,7 @@ export default class InnovationCICD extends React.Component {
     this.setState({ sprintList });
   }
 
-  handleProjectChange(ent, value) {
+  handleProjectChange(value) {
     const { projectName, sprintName } = this.state;
     this.setState({ loading: true, sprintName: null, projectName: value });
 
@@ -326,8 +328,47 @@ export default class InnovationCICD extends React.Component {
     } = this.state;
 
     return (
-      <>
-        <Stack
+      <Layout fullHeight>
+        <LayoutItem>
+          <div className="toolbar__container">
+            <div className="toolbar__section">
+              {projectList ? (
+                <ProjectDropdown
+                  selectedProject={projectName}
+                  loadedProjects={projectList}
+                  filterChange={this.handleProjectChange}
+                />
+              ) : (
+                <Spinner />
+              )}
+              <div className="toolbar__item">
+                <Checkbox
+                  className="toolbar__item-element"
+                  checked={kanbanOnly}
+                  onChange={this.handleKanbanChange}
+                  label="Kanban Only"
+                />
+              </div>
+            </div>
+            <div className="toolbar__section">
+              <div className="toolbar__item">
+                {projectName && projectName != 'All' ? (
+                  <Mapping
+                    projectName={projectName}
+                    loading={loading}
+                    accountId={accountId}
+                    settingsChange={(issueTypeSelected, codeRepoSelected) =>
+                      this.handleSettingsChange(issueTypeSelected, codeRepoSelected)
+                    }
+                  />
+                ) : (
+                  <></>
+                )}
+              </div>
+            </div>
+
+          </div>
+          {/* <Stack
           className="toolbar-container"
           fullWidth
           gapType={Stack.GAP_TYPE.NONE}
@@ -343,12 +384,9 @@ export default class InnovationCICD extends React.Component {
               <StackItem className="toolbar-item has-separator">
                 {projectList ? (
                   <ProjectDropdown
-                    projectName={projectName}
+                    selectedProject={projectName}
                     loadedProjects={projectList}
-                    loading={loading}
-                    filterChange={(ent, value) =>
-                      this.handleProjectChange(ent, value)
-                    }
+                    filterChange={this.handleProjectChange}
                   />
                 ) : (
                   <Spinner />
@@ -401,57 +439,58 @@ export default class InnovationCICD extends React.Component {
           ) : (
             <></>
           )}
-        </Stack>
+        </Stack> */}
 
-        <Grid
-          className="primary-grid"
-          spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
-        >
-          <GridItem className="sidebar-container" columnSpan={2}>
-            {projectName && sprintName && !kanbanOnly ? (
-              <SprintList
-                projectName={projectName}
-                loadedSprints={sprintList}
-                sprintName={sprintName}
-                filterChange={(ent, value) =>
-                  this.handleSprintChange(ent, value)
-                }
-              />
-            ) : (
-              <HeadingText type={HeadingText.TYPE.HEADING_4}>
-                <center></center>
-              </HeadingText>
-            )}
-          </GridItem>
-
-          <GridItem className="primary-content-container" columnSpan={10}>
-            <main className="primary-content full-height">
-              {eventMissing ? (
-                <center>
-                  <h3>No "JIRAEvent" and/or "BitbucketEvent" Types found in this account</h3>
-                  <h4>Please select an account with required event types</h4>
-                </center>
-              ) : loading ? (
-                <>
-                  <Spinner /> <br />
-                  <center>
-                    {'Loading Types: ' + issueTypeSelected.toString()}
-                  </center>
-                </>
-              ) : (
-                <Dashboard
+          <Grid
+            className="primary-grid"
+            spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
+          >
+            <GridItem className="sidebar-container" columnSpan={2}>
+              {projectName && sprintName && !kanbanOnly ? (
+                <SprintList
                   projectName={projectName}
-                  accountId={accountId}
-                  kanbanOnly={kanbanOnly}
+                  loadedSprints={sprintList}
                   sprintName={sprintName}
-                  issueTypeSelected={issueTypeSelected}
-                  codeRepoSelected={codeRepoSelected}
+                  filterChange={(ent, value) =>
+                    this.handleSprintChange(ent, value)
+                  }
                 />
+              ) : (
+                <HeadingText type={HeadingText.TYPE.HEADING_4}>
+                  <center></center>
+                </HeadingText>
               )}
-            </main>
-          </GridItem>
-        </Grid>
-      </>
+            </GridItem>
+
+            <GridItem className="primary-content-container" columnSpan={10}>
+              <main className="primary-content full-height">
+                {eventMissing ? (
+                  <center>
+                    <h3>No "JIRAEvent" and/or "BitbucketEvent" Types found in this account</h3>
+                    <h4>Please select an account with required event types</h4>
+                  </center>
+                ) : loading ? (
+                  <>
+                    <Spinner /> <br />
+                    <center>
+                      {'Loading Types: ' + issueTypeSelected.toString()}
+                    </center>
+                  </>
+                ) : (
+                  <Dashboard
+                    projectName={projectName}
+                    accountId={accountId}
+                    kanbanOnly={kanbanOnly}
+                    sprintName={sprintName}
+                    issueTypeSelected={issueTypeSelected}
+                    codeRepoSelected={codeRepoSelected}
+                  />
+                )}
+              </main>
+            </GridItem>
+          </Grid>
+        </LayoutItem>
+      </Layout>
     );
   }
 }

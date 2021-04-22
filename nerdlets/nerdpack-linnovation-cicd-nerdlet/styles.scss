@@ -1,9 +1,14 @@
 @import "./nrds.scss";
+@import "./toolbar/styles.scss";
 @import url('//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css');
 
 /* -------------------- */
 // Utility Classes
 /* -------------------- */
+
+* {
+  box-sizing: border-box;
+}
 
 .full-width {
   width: 100%;
