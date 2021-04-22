@@ -1,13 +1,8 @@
 import React from 'react';
 import {
-  Grid,
-  GridItem,
-  Stack,
-  StackItem,
   NrqlQuery,
   NerdGraphQuery,
   Spinner,
-  HeadingText,
   PlatformStateContext,
   nerdlet,
   UserStorageQuery,
@@ -16,7 +11,7 @@ import {
   LayoutItem,
 } from 'nr1';
 import ProjectDropdown from './toolbar/project-dropdown';
-import SprintList from './sprint-list';
+import Navigation from './nav/navigation';
 import Dashboard from './dashboard';
 import Mapping from './mapping';
 const gqlQuery = require('./query');
@@ -299,7 +294,7 @@ export default class InnovationCICD extends React.Component {
     );
   }
 
-  async handleSprintChange(ent, value) {
+  handleSprintChange(value) {
     const { projectName, sprintName } = this.state;
 
     if (value == 'All') {
@@ -328,60 +323,11 @@ export default class InnovationCICD extends React.Component {
     } = this.state;
 
     return (
-      <Layout fullHeight>
-        <LayoutItem>
-          <div className="toolbar__container">
-            <div className="toolbar__section">
-              {projectList ? (
-                <ProjectDropdown
-                  selectedProject={projectName}
-                  loadedProjects={projectList}
-                  filterChange={this.handleProjectChange}
-                />
-              ) : (
-                <Spinner />
-              )}
-              <div className="toolbar__item">
-                <Checkbox
-                  className="toolbar__item-element"
-                  checked={kanbanOnly}
-                  onChange={this.handleKanbanChange}
-                  label="Kanban Only"
-                />
-              </div>
-            </div>
-            <div className="toolbar__section">
-              <div className="toolbar__item">
-                {projectName && projectName != 'All' ? (
-                  <Mapping
-                    projectName={projectName}
-                    loading={loading}
-                    accountId={accountId}
-                    settingsChange={(issueTypeSelected, codeRepoSelected) =>
-                      this.handleSettingsChange(issueTypeSelected, codeRepoSelected)
-                    }
-                  />
-                ) : (
-                  <></>
-                )}
-              </div>
-            </div>
-
-          </div>
-          {/* <Stack
-          className="toolbar-container"
-          fullWidth
-          gapType={Stack.GAP_TYPE.NONE}
-          horizontalType={Stack.HORIZONTAL_TYPE.FILL}
-          verticalType={Stack.VERTICAL_TYPE.CENTER}
-        >
-          <StackItem className="toolbar-section1">
-            <Stack
-              gapType={Stack.GAP_TYPE.LARGE}
-              fullWidth
-              verticalType={Stack.VERTICAL_TYPE.FILL}
-            >
-              <StackItem className="toolbar-item has-separator">
+      <>
+        <Layout>
+          <LayoutItem>
+            <div className="toolbar__container">
+              <div className="toolbar__section">
                 {projectList ? (
                   <ProjectDropdown
                     selectedProject={projectName}
@@ -391,106 +337,75 @@ export default class InnovationCICD extends React.Component {
                 ) : (
                   <Spinner />
                 )}
-              </StackItem>
-              <StackItem className="toolbar-item has-separator">
-                <Radio
-                  label="Kanban Only (BETA)"
-                  checked={kanbanOnly}
-                  onClick={this.handleKanbanChange}
-                />
-              </StackItem>
-            </Stack>
-          </StackItem>
-          <Stack
-            fullWidth
-            fullHeight
-            verticalType={Stack.VERTICAL_TYPE.CENTER}
-            horizontalType={Stack.HORIZONTAL_TYPE.CENTER}
-          >
-            <StackItem className="toolbar-section2">
-              <Stack
-                fullWidth
-                fullHeight
-                verticalType={Stack.VERTICAL_TYPE.CENTER}
-                horizontalType={Stack.HORIZONTAL_TYPE.CENTER}
-              >
-                <StackItem className="toolbar-item has-separator">
-                  <HeadingText type={HeadingText.TYPE.HEADING_3}>
-                    {projectName ? projectName : 'All'}
-                  </HeadingText>
-                </StackItem>
-                <StackItem>
-                  <HeadingText type={HeadingText.TYPE.HEADING_3}>
-                    {sprintName ? sprintName : ''}
-                  </HeadingText>
-                </StackItem>
-              </Stack>
-            </StackItem>
-          </Stack>
-          {projectName && projectName != 'All' ? (
-            <Mapping
-              projectName={projectName}
-              loading={loading}
-              accountId={accountId}
-              settingsChange={(issueTypeSelected, codeRepoSelected) =>
-                this.handleSettingsChange(issueTypeSelected, codeRepoSelected)
-              }
-            />
-          ) : (
-            <></>
-          )}
-        </Stack> */}
-
-          <Grid
-            className="primary-grid"
-            spacingType={[Grid.SPACING_TYPE.NONE, Grid.SPACING_TYPE.NONE]}
-          >
-            <GridItem className="sidebar-container" columnSpan={2}>
-              {projectName && sprintName && !kanbanOnly ? (
-                <SprintList
-                  projectName={projectName}
-                  loadedSprints={sprintList}
-                  sprintName={sprintName}
-                  filterChange={(ent, value) =>
-                    this.handleSprintChange(ent, value)
-                  }
-                />
-              ) : (
-                <HeadingText type={HeadingText.TYPE.HEADING_4}>
-                  <center></center>
-                </HeadingText>
-              )}
-            </GridItem>
-
-            <GridItem className="primary-content-container" columnSpan={10}>
-              <main className="primary-content full-height">
-                {eventMissing ? (
-                  <center>
-                    <h3>No "JIRAEvent" and/or "BitbucketEvent" Types found in this account</h3>
-                    <h4>Please select an account with required event types</h4>
-                  </center>
-                ) : loading ? (
-                  <>
-                    <Spinner /> <br />
-                    <center>
-                      {'Loading Types: ' + issueTypeSelected.toString()}
-                    </center>
-                  </>
-                ) : (
-                  <Dashboard
-                    projectName={projectName}
-                    accountId={accountId}
-                    kanbanOnly={kanbanOnly}
-                    sprintName={sprintName}
-                    issueTypeSelected={issueTypeSelected}
-                    codeRepoSelected={codeRepoSelected}
+                <div className="toolbar__item">
+                  <Checkbox
+                    className="toolbar__item-element"
+                    checked={kanbanOnly}
+                    onChange={this.handleKanbanChange}
+                    label="Kanban Only"
                   />
-                )}
-              </main>
-            </GridItem>
-          </Grid>
-        </LayoutItem>
-      </Layout>
+                </div>
+              </div>
+              <div className="toolbar__section">
+                <div className="toolbar__item">
+                  {projectName && projectName != 'All' ? (
+                    <Mapping
+                      projectName={projectName}
+                      loading={loading}
+                      accountId={accountId}
+                      settingsChange={(issueTypeSelected, codeRepoSelected) =>
+                        this.handleSettingsChange(issueTypeSelected, codeRepoSelected)
+                      }
+                    />
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </div>
+            </div>
+          </LayoutItem>
+        </Layout>
+        <Layout fullHeight>
+          <LayoutItem
+            type={LayoutItem.TYPE.SPLIT_LEFT}
+            sizeType={LayoutItem.SIZE_TYPE.MEDIUM}
+            className="navigation__container"
+          >
+            <Navigation
+              projectName={projectName}
+              loadedSprints={sprintList}
+              sprintName={sprintName}
+              onChange={this.handleSprintChange}
+            />
+          </LayoutItem>
+          <LayoutItem>
+            <main className="primary-content full-height">
+              {eventMissing ? (
+                <center>
+                  <h3>No "JIRAEvent" and/or "BitbucketEvent" Types found in this account</h3>
+                  <h4>Please select an account with required event types</h4>
+                </center>
+              ) : loading ? (
+                <>
+                  <Spinner /> <br />
+                  <center>
+                    {'Loading Types: ' + issueTypeSelected.toString()}
+                  </center>
+                </>
+              ) : (
+                <Dashboard
+                  projectName={projectName}
+                  accountId={accountId}
+                  kanbanOnly={kanbanOnly}
+                  sprintName={sprintName}
+                  issueTypeSelected={issueTypeSelected}
+                  codeRepoSelected={codeRepoSelected}
+                />
+              )}
+            </main>
+          </LayoutItem>
+        </Layout>
+      </>
     );
   }
 }

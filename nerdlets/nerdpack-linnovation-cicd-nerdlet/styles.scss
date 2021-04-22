@@ -1,5 +1,6 @@
 @import "./nrds.scss";
 @import "./toolbar/styles.scss";
+@import "./nav/styles.scss";
 @import url('//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css');
 
 /* -------------------- */
@@ -18,31 +19,6 @@
   min-height: 100%;
 }
 
-.toolbar-container {
-  height: 74px;
-  box-sizing: border-box;
-  border-top: 1px solid #d5d7d7;
-  border-bottom: 1px solid #e3e4e4;
-  box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.02);
-  background: #edeeee;
-  padding: 0 16px;
-}
-
-.toolbar-section1 .toolbar-item:first-child {
-  padding-left: 0;
-}
-
-.toolbar-item {
-  display: flex;
-  justify-content: center;
-  padding: 8px 16px;
-  align-items: center;
-
-  &.has-separator {
-    border-right: 1px dotted #d5d7d7;
-  }
-}
-
 .primary-grid {
   grid-gap: 0;
   overflow: hidden;
@@ -50,50 +26,9 @@
   height: calc(100% - 74px);
 }
 
-.sidebar-container {
-  height: 100%;
-  overflow: scroll;
-  border-right: 1px solid #eeeeee;
-  background-color: #fff;
-}
-
 .primary-content-container {
   overflow: scroll;
   padding: 16px;
-}
-
-.sidebar-list {
-  padding: 0;
-  list-style-type: none;
-}
-
-.sidebar-list-item {
-  padding: 12px 16px;
-  list-style-type: none;
-  color: #2a3434;
-  font-size: 12px;
-  overflow-wrap: break-word;
-  border-bottom: 1px solid #f4f4f4;
-
-  &:hover {
-    background-color: #fafbfb;
-    cursor: pointer;
-  }
-}
-
-.sidebar-list-item-selected {
-  padding: 12px 16px;
-  list-style-type: none;
-  color: #000000;
-  font-size: 14px;
-  overflow-wrap: break-word;
-  border-bottom: 1px solid #f4f4f4;
-  background-color: #616161;
-
-  &:hover {
-    background-color: #fafbfb;
-    cursor: pointer;
-  }
 }
 
 .primary-content {
