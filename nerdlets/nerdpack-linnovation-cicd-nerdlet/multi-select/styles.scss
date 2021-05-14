@@ -1,0 +1,34 @@
+.multi__select {
+  height: 12.75rem;
+  width: 21rem;
+  border-radius: 4px;
+  border: solid #cbcfcf 1px;
+
+  > .multi__select-search {
+    width: inherit;
+    border-bottom: solid #cbcfcf 1px;
+    background-color: #e7e9e9;
+
+    > .search__input {
+      padding: 0 0.5rem;
+      margin-top: 0.25rem;
+    }
+  }
+
+  > .multi__select-items {
+    overflow-y: scroll;
+    height: 10.7rem;
+
+    > .multi__select-item {
+      padding: 0.25rem 0.5rem 0 0.5rem;
+      &.selected {
+        color: #02656b;
+        background-color: rgb(240, 251, 252);
+      }
+    }
+  }
+
+  > .multi__select-empty {
+    padding: 0.25rem 0.5rem;
+  }
+}

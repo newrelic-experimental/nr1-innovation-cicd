@@ -62,8 +62,8 @@ module.exports = {
     totalIssues: (projectName,issueTypeSelected,timeSpan) => {
       return `select sum(Issues), sum(Deleted) from (SELECT filter(uniqueCount(issueKey), where issueType in (` + `'` + issueTypeSelected.join("','") + `'` + `)) as Issues, filter(uniqueCount(issueKey), where webhookEvent = 'jira:issue_deleted') as Deleted FROM JIRAEvent where projectName = '` + projectName + `' facet issueKey where timestamp > 1592870400000 limit MAX) where Issues = 1  SINCE ` + timeSpan.toString() + ` days AGO`
     },
-    deletedIssues: (projectName) => {
-      return `SELECT filter(uniqueCount(issueKey), where webhookEvent = 'jira:issue_deleted') as Deleted FROM JIRAEvent where projectName = '` + projectName + `' facet issueKey limit MAX`
+    deletedIssues: (projectName, timeSpan) => {
+      return `SELECT filter(uniqueCount(issueKey), where webhookEvent = 'jira:issue_deleted') as Deleted FROM JIRAEvent where projectName = '${projectName}' facet issueKey limit MAX SINCE ${timeSpan} AGO`
     },
     changeRate: () => {
       return `"SELECT  filter(earliest(timeOpen)/24, where issueStatus = 'In Progress') as 'InProgress', filter(earliest(timeOpen)/24,  where issueStatus in ('Complete','Done')) - filter(earliest(timeOpen)/24, where issueStatus = 'In Progress') as 'Done', filter(earliest(timeOpen)/24, where issueStatus in ('Complete','Done')) as 'Total'  from JIRAEvent since 1 month ago limit max facet issueKey where issueKey in (` + inSprintIssueList.map(function(issue){ return "'" + issue.issueKey + "'"}).join(",") + ` )"`

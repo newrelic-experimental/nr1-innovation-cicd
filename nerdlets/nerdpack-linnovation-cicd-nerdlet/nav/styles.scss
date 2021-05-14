@@ -1,0 +1,29 @@
+.navigation__container {
+  background-color: #fff;
+  width: 100%;
+  margin-right: -8px;
+
+  .navigation__item {
+    min-height: 55px;
+    max-height: 80px;
+    border-bottom: 1px dotted #e3e4e4;
+    padding: 0 10px 0 16px;
+    color: #464E4E;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:hover {
+      background-color: #fafbfb;
+      cursor: pointer;
+    }
+  
+    &.selected {
+      color: #007e8a;
+      font-weight: 600;
+      box-shadow: inset 4px 0 0 0 #007e8a;
+      background-color: #f7ffff;  
+    }
+  }
+}
