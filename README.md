@@ -2,7 +2,7 @@
 
 # nr1-innovation-cicd nerdpack
 
-This nerdpack allows you to evalute the efficiency and health of your development lifecycle, using the data from your Jira and Bitbucket projects, and connect your projects directly with the performance outcomes of Service Workloads.
+This nerdpack allows you to evalute the efficiency and health of your development lifecycle, using the data from your Jira and Bitbucket projects, and connect your projects directly with the performance outcomes of srvice Workloads.
 
 ![screenshot of this project](screenshots/screenshot_01.png)
 
@@ -37,7 +37,7 @@ Visit [https://one.newrelic.com/?nerdpacks=local](https://one.newrelic.com/?nerd
 ## Deploying this Nerdpack
 Local testing is great, but ultimately you need to deploy the app so that others in your company can use it also. 
 
-Read up on the full details about deploying a New Relic One app can be found [here](https://developer.newrelic.com/build-apps/publish-deploy/publish/). 
+Read up on the full details about deploying a [New Relic One app](https://developer.newrelic.com/build-apps/publish-deploy/publish/). 
 
 Or, open a command prompt in the nerdpack's directory and run the following commands:
 
