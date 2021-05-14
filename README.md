@@ -6,10 +6,6 @@ This nerdpack allows you to evalute the efficiency and health of your developmen
 
 ![screenshot of this project](screenshots/screenshot_01.png)
 
-## Installation
-
->Follow the **Getting started** instructions below.
-
 ## Getting started
 
 ### With the Atlassian Integrations
