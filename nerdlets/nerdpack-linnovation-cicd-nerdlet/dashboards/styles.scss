@@ -1,0 +1,154 @@
+@mixin divided__container {
+  box-shadow: 0px 4px 5px -5px #e3e4e4;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard__container {
+  padding: 16px;
+  border-left: 1px solid #e3e4e4;
+}
+
+.issuetypes__container {
+  @include divided__container();
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  .issuetype__badge {
+    padding: 0.5rem;
+    margin-right: 0.75rem;
+  }
+}
+
+.card__group__container {
+  @include divided__container();
+  padding-bottom: 0.5rem;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card__container {
+  border-radius: 2px;
+  box-shadow: 0px 1px 0px rgba(0, 63, 66, 0.07), 0px 3px 3px rgba(0, 39, 41, 0.03), 0px 5px 23px rgba(0, 45, 47, 0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 9rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+
+  .card__container-title-bar {
+    height: 2rem;
+    width: 100%;
+    background-color: #eeefef;
+    display: flex;
+    justify-content: center;
+
+    > .card__container-title {
+      padding: .5rem 0;
+      font-size: 1rem;
+      line-height: 1rem;
+    }
+  }
+
+  .card__container-subtitle {
+    color: rgba(0, 0, 0, 0.4);
+    font-size: .75rem;
+    padding-top: 0.5rem;
+  }
+
+  .card__section-group {
+    display: flex;
+    padding-top: .5rem;
+
+    .card__section + .card__section {
+      border-left: 1px solid #eeefef;
+    }
+
+    .card__section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .card__section-data {
+        padding: .25rem 1rem 0 1rem;
+        font-size: 2.15rem;
+
+        &.red {
+          color: red;
+        }
+
+        &.green {
+          color: green;
+        }
+
+        &.yellow {
+          color: yellow;
+        }
+      }
+
+      .card__section-label {
+        font-size: .85rem;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+.chart__group__container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  .chart__container {
+    width: 98%;
+    margin-bottom: 8px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0px 1px 0px rgba(0, 63, 66, 0.07), 0px 3px 3px rgba(0, 39, 41, 0.03), 0px 5px 23px rgba(0, 45, 47, 0.03);
+    position: relative;
+
+    [class*="wnd-GridItem"] {
+      margin-left: 0px;
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+
+      > .chart-title {
+        font-size: 1rem;
+        font-weight: 400;
+        padding: 8px 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        > .chart-subtitle {
+          color: #8e9494;
+          font-size: 12px;
+          padding-top: 2px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+
+    .chart-content {
+      padding: 1rem;
+      height: 20rem;
+
+      & > [class*="Chart"] {
+        height: 100%;
+        width: 100%;
+      }
+
+      &.basic-table {
+        padding: 0 1rem;
+      }
+    }
+  }
+
+}
