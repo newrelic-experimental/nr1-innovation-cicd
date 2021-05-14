@@ -2,15 +2,22 @@
 
 # nr1-innovation-cicd nerdpack
 
->This nerdpack serves to provide a view of CICD information from a Jira Webhook integration.
+This nerdpack allows you to evalute the efficiency and health of your development lifecycle, using the data from your Jira and Bitbucket projects, and connect your projects directly with the performance outcomes of Service Workloads.
 
-![screenshot of this project](assets/screenshot.png)
+![screenshot of this project](screenshots/screenshot_01.png)
 
 ## Installation
 
 >Follow the **Getting started** instructions below.
 
 ## Getting started
+
+### With the Atlassian Integrations
+Before anything, you need to start collecting data. Follow the linked instructions to get your [Jira](Webhooks/JiraToInsights/README.md) and [Bitbucket](Webhooks/BitbucketToInsights/README.md) integrations up and running.
+
+### With this Nerdpack
+Once data is coming in, install the Nerdpack:
+
 1. First, ensure that you have [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [NPM](https://www.npmjs.com/get-npm) installed. If you're unsure whether you have one or both of them installed, run the following commands. If you have them installed these commands will return a version number, if not, the commands won't be recognized:
 ```bash
 git --version
@@ -28,15 +35,19 @@ nr1 nerdpack:serve
 Visit [https://one.newrelic.com/?nerdpacks=local](https://one.newrelic.com/?nerdpacks=local), navigate to the Nerdpack, and :sparkles:
 
 ## Deploying this Nerdpack
-Open a command prompt in the nerdpack's directory and run the following commands.
+Local testing is great, but ultimately you need to deploy the app so that others in your company can use it also. 
+
+Read up on the full details about deploying a New Relic One app can be found [here](https://developer.newrelic.com/build-apps/publish-deploy/publish/). 
+
+Or, open a command prompt in the nerdpack's directory and run the following commands:
 
 ```bash
 # If you need to create a new uuid for the account to which you're deploying this Nerdpack, use the following
 # nr1 nerdpack:uuid -g [--profile=your_profile_name]
 # to see a list of APIkeys / profiles available in your development environment, run nr1 credentials:list
 nr1 nerdpack:publish [--profile=your_profile_name]
-nr1 nerdpack:deploy [-c [DEV|BETA|STABLE]] [--profile=your_profile_name]
-nr1 nerdpack:subscribe [-c [DEV|BETA|STABLE]] [--profile=your_profile_name]
+nr1 nerdpack:deploy [-t [DEV|BETA|STABLE]] [--profile=your_profile_name]
+nr1 nerdpack:subscribe [-t [DEV|BETA|STABLE]] [--profile=your_profile_name]
 ```
 
 Visit [https://one.newrelic.com](https://one.newrelic.com), navigate to the Nerdpack, and :sparkles:
@@ -47,7 +58,7 @@ New Relic has open-sourced this project. This project is provided AS-IS WITHOUT 
 We encourage you to bring your experiences and questions to the [Explorers Hub](https://discuss.newrelic.com) where our community members collaborate on solutions and new ideas.
 
 ## Contributing
-We encourage your contributions to improve nr1-innovation-cicd##! Keep in mind when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. You only have to sign the CLA one time per project.
+We encourage your contributions to improve nr1-innovation-cicd! Keep in mind when you submit your pull request, you'll need to sign the CLA via the click-through using CLA-Assistant. You only have to sign the CLA one time per project.
 If you have any questions, or to execute our corporate CLA, required if your contribution is on behalf of a company,  please drop us an email at opensource@newrelic.com.
 
 **A note about vulnerabilities**
