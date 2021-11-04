@@ -181,8 +181,8 @@ export default class SprintDashboard extends React.Component {
     var cycleTimes = {}
     var sprintStartEstimated = true
 
-    var sprintStartDate = results.data.chart[0].data[0].sprintStartDate
-    var sprintEndDate = results.data.chart[1].data[0].sprintEndDate
+    var sprintStartDate = results.data[0].data[0].sprintStartDate
+    var sprintEndDate = results.data[1].data[0].sprintEndDate
 
     let sprintStartCountResultsAPI = await NerdGraphQuery.query({
       query: gqlQuery.runQuery(
@@ -367,7 +367,7 @@ export default class SprintDashboard extends React.Component {
       totalAverage = 0,
       totalCount = 0
 
-    for (let result of results4.data.chart) {
+    for (let result of results4.data) {
       if (result.data[0].InProgress) {
         inProgressAverage += result.data[0].InProgress
         inProgressCount++
